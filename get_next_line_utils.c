@@ -6,7 +6,7 @@
 /*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:45:14 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/26 09:45:19 by apaterno         ###   ########.fr       */
+/*   Updated: 2024/02/26 11:17:10 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int ft_strlen(char *str)
     return (i);
 }
 
-void *ft_strcpy(char *dst, char *str)
+void ft_strcpy(char *dst, char *str)
 {
     int i;
 
@@ -35,19 +35,24 @@ void *ft_strcpy(char *dst, char *str)
     dst[i] = '\0';
 }
 
-char *ft_strdup(char *str)
+char *ft_strdup(char *str, int size)
 {
-    char *p;
-    int size;
+    char 	*p;
+	int		i;
 
     if (!str)
         return NULL;
 
-    size = ft_strlen(str);
     p = malloc(sizeof(char) * size + 1);
     if (!p)
         return(NULL);
-    ft_strcpy(p, str);
+	i = 0;
+    while (i < size)
+	{
+		p[i] = str[i];
+		i++;
+	}
+	p[size] = '\0';
     return (p);
 }
 

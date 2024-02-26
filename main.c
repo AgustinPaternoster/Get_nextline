@@ -3,11 +3,8 @@
 
 int main(void)
 {
-    char str[5] = "XXXX";
-    char str2[5] ="QQQQ";
-    char *p = ft_strdup(str);
-    char *pp = ft_strdup(str2);
-    char *ppp = ft_strjoin(p,pp);
-    printf("%s",ppp);
-    return 0;
+	int fd = open("./test.txt",O_RDONLY);
+	char *p = get_next_line(fd);
+	printf("%s",p);
+	return 0;
 }

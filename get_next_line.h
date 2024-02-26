@@ -9,8 +9,8 @@
 
 char *get_next_line(int fd);
 int ft_strlen(char *str);
-void *ft_strcpy(char *dst, char *str);
-char *ft_strdup(char *str);
+void ft_strcpy(char *dst, char *str);
+char *ft_strdup(char *str, int size);
 char *ft_strjoin(char *s1, char *s2);
 int ftfindchar(char *str ,int size);
 
