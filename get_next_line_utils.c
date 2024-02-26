@@ -15,13 +15,12 @@ void *ft_strcpy(char *dst, char *str)
     int i;
 
     i = 0;
-    str[i] = 48;
     while(str[i])
     {
         dst[i] = str[i];
         i++;
     }
-    dst[i] = '\n';
+    dst[i] = '\0';
 }
 
 char *ft_strdup(char *str)
@@ -47,13 +46,19 @@ char *ft_strjoin(char *s1, char *s2)
     int i;
     int lenS1;
 
-    lenS1 = ft_strlen(s1);    
+    lenS1 = ft_strlen(s1);   
     size = lenS1 + ft_strlen (s2);
     str = malloc (sizeof(char) * size + 1);
     if (!str)
         return (NULL);
     ft_strcpy(str,s1);
-    ft_strcpy(str + lenS1,s2);
+    i = 0;
+    while(s2[i])
+    {
+        str[lenS1 + i] = s2[i];
+        i++;
+    }
+    str[lenS1 + i] = '\0';
     return (str);
 }
 
