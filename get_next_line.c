@@ -6,7 +6,7 @@
 /*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:45:24 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/26 11:29:19 by apaterno         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:42:20 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,31 @@
 
 char	*get_next_line(int fd)
 {
-	char	*strline;
-	int		bf = 10;
-	char	buffer[bf];
+	char	buffer[BUFFER_SIZE];
 	int 	chread;
 	char	*strtmp;
 	char	*buf_read;
+	int		cline;
+	static int readline;
+	static char *rest;
 
+	strtmp =NULL;
+	cline = 0;
 	do
 	{
-		chread = read(fd,buffer,bf);
-		buf_read = ft_strdup(buffer,chread);
-		strtmp = ft_strjoin(strtmp,buf_read);
-		tmp++;
-	
+		chread = read(fd,buffer,BUFFER_SIZE);
+		if (cline == readline)
+		{
+			buf_read = ft_strdup(buffer,chread);
+			strtmp = ft_strjoin(strtmp,buf_read);
+			if (ft_findn(buffer,chread))
+			{	
+				readline++;
+				return (strtmp);
+			}	
+		}	
+		else
+			cline++;
 	}
 	while (chread != 0);
 	return (strtmp);

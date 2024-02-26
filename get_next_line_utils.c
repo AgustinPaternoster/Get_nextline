@@ -6,7 +6,7 @@
 /*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:45:14 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/26 11:17:10 by apaterno         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:18:59 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char *ft_strjoin(char *s1, char *s2)
     return (str);
 }
 
-int ftfindchar(char *str ,int size)
+int ft_findn(char *str ,int size)
 {
 	int i;
 	
