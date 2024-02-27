@@ -6,7 +6,7 @@
 /*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:45:14 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/26 13:18:59 by apaterno         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:53:41 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char *ft_strjoin(char *s1, char *s2)
     int i;
     int lenS1;
 
+	if (!s1)
+		s1 = "";
     lenS1 = ft_strlen(s1);   
     size = lenS1 + ft_strlen (s2);
     str = malloc (sizeof(char) * size + 1);

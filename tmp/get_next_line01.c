@@ -6,7 +6,7 @@
 /*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 09:45:24 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/27 12:59:55 by apaterno         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:47:09 by apaterno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*get_next_line(int fd)
 	int		cline;
 	static int readline;
 	static char *rest;
-	
 
+	strtmp =NULL;
 	cline = 0;
 	do
 	{
@@ -45,5 +45,4 @@ char	*get_next_line(int fd)
 	while (chread != 0);
 	return (strtmp);
 }
-
 
