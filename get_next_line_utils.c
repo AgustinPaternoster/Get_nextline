@@ -19,7 +19,6 @@ char *ft_strdup(char *str, int size)
 
     if (!str)
         return NULL;
-
     p = malloc(sizeof(char) * size + 1);
     if (!p)
         return(NULL);
@@ -85,7 +84,6 @@ char *ft_strjoin(t_list **lista)
     char *strtmp;
     char *result;
     int size;
-
 
     size = 0;
     tmp = *lista;
