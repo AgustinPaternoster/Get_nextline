@@ -1,49 +1,56 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 09:45:24 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/27 12:59:55 by apaterno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-#include <stdio.h>
-
-char	*get_next_line(int fd)
+int ft_strlen(char *str)
 {
-	char	buffer[BUFFER_SIZE];
-	int 	chread;
-	char	*strtmp;
-	char	*buf_read;
-	int		cline;
-	static int readline;
-	static char *rest;
-	
+    int i;
 
-	cline = 0;
-	do
-	{
-		chread = read(fd,buffer,BUFFER_SIZE);
-		if (cline == readline)
-		{
-			buf_read = ft_strdup(buffer,chread);
-			strtmp = ft_strjoin(strtmp,buf_read);
-			if (ft_findn(buffer,chread))
-			{	
-				readline++;
-				return (strtmp);
-			}	
-		}	
-		else
-			cline++;
-	}
-	while (chread != 0);
-	return (strtmp);
+    i = 0;
+    while(str[i])
+        i++;
+    return (i);
+}
+
+char *ft_findchr(char *str, int size)
+{
+    int i;
+
+    i = 0;
+
+    while (i < size)
+    {
+        if (str[i] == 10)
+            return (&str[i]);
+        i++;
+    }
+    return (NULL);
 }
 
 
+char	*get_next_line(int fd)
+{
+    char buffer[BUFFER_SIZE];
+    int chread;
+    static int line;
+    static char *rest;
+    t_list *lista;
+    t_list *nodo;
+    int countline;
+
+    lista = NULL;
+    chread = -1;
+    countline = 0;
+    while (chread !=0)
+    {
+        chread = read(fd, buffer,BUFFER_SIZE);
+        if (line == countline)
+        {
+            nodo = lstnewnode(ft_strdup(buffer,chread));
+            lstaddback(&lista,nodo);
+            if (ft_findchr(buffer,chread))
+                break;
+        }
+        else
+            countline++;
+    }
+    return (ft_strjoin(&lista));
+}

@@ -1,38 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 09:45:14 by apaterno          #+#    #+#             */
-/*   Updated: 2024/02/27 12:53:41 by apaterno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "get_next_line.h"
 
-# include "get_next_line.h"
-
-int ft_strlen(char *str)
+t_list *lstnewnode(void * content)
 {
-    int i;
+    t_list *node;
+    node = malloc(sizeof(t_list));
+    if (!node)
+        return (NULL);
+    node->content = content;
+    node->next = NULL;
 
-    i = 0;
-    while(str[i])
-        i++;
-    return (i);
-}
-
-void ft_strcpy(char *dst, char *str)
-{
-    int i;
-
-    i = 0;
-    while(str[i])
-    {
-        dst[i] = str[i];
-        i++;
-    }
-    dst[i] = '\0';
+    return (node);
 }
 
 char *ft_strdup(char *str, int size)
@@ -56,42 +33,77 @@ char *ft_strdup(char *str, int size)
     return (p);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+void lstaddback(t_list **lista , t_list *nodo)
 {
-    char *str;
-    int size;
-    int i;
-    int lenS1;
+    t_list *tmp;
 
-	if (!s1)
-		s1 = "";
-    lenS1 = ft_strlen(s1);   
-    size = lenS1 + ft_strlen (s2);
-    str = malloc (sizeof(char) * size + 1);
-    if (!str)
-        return (NULL);
-    ft_strcpy(str,s1);
-    i = 0;
-    while(s2[i])
+    tmp = *lista;
+    if (!tmp)
+        *lista = nodo;
+    else
     {
-        str[lenS1 + i] = s2[i];
+        while(tmp->next != NULL)
+        {
+            tmp = tmp->next;
+        }
+        tmp->next = nodo;
+    }
+}
+
+// int lstsize(t_list *lista)
+// {
+//     t_list *tmp = lista;
+//     int i = 0;
+
+//     while(tmp != NULL)
+//     {
+//         i++;
+//         tmp = tmp->next;
+//     }
+//     return (i);
+// }
+
+void ft_strconcat(char *dst ,char *src)
+{
+    int i;
+    int lendst;
+
+    i = 0;
+    lendst = ft_strlen(dst);
+    while (src[i])
+    {
+        dst[lendst + i] = src[i];
         i++;
     }
-    str[lenS1 + i] = '\0';
-    return (str);
+    dst[lendst + i] = '\0';
 }
 
-int ft_findn(char *str ,int size)
+
+char *ft_strjoin(t_list **lista)
 {
-	int i;
-	
-	i = 0;
-	while(i < size)
-	{
-		if(str[i] == 10)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+    t_list *tmp;
+    char *strtmp;
+    char *result;
+    int size;
 
+
+    size = 0;
+    tmp = *lista;
+    if (!tmp)
+        return (NULL);
+    while(tmp !=NULL)
+    {
+        size += ft_strlen((char *)tmp->content);
+        tmp = tmp->next;
+    }
+    strtmp = malloc(sizeof(char) * size);
+    if(!strtmp)
+        return (NULL);
+    tmp = *lista;
+    while(tmp !=NULL)
+    {
+        ft_strconcat(strtmp ,(char *)tmp->content);
+        tmp = tmp->next;
+    }
+    return (strtmp);
+}

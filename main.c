@@ -3,12 +3,22 @@
 
 int main(void)
 {
-	int fd = open("./test.txt",O_RDONLY);
-	
-	printf("r:%d",fd);
-	
-	char *p = get_next_line(fd);
-	printf("r:%s",p);
 
-	return 0;
+    
+
+    int fd = open("./test.txt",O_RDONLY);
+    char *line = get_next_line(fd);
+    printf("LI:%s\n",line);
+    line = get_next_line(fd);
+    printf("LI:%s\n",line);
+    line = get_next_line(fd);
+    printf("LI:%s\n",line);
+    line = get_next_line(fd);
+    printf("LI:%s\n",line);
+    return (0);
+
+    
+
+    
+
 }
