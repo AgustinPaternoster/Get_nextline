@@ -77,6 +77,7 @@ void ft_strconcat(char *dst ,char *src)
     dst[lendst + i] = '\0';
 }
 
+void ft_delall(t_list **lista)
 
 char *ft_strjoin(t_list **lista)
 {

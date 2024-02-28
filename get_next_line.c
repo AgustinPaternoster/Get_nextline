@@ -57,7 +57,7 @@ char	*get_next_line(int fd)
         chread = read(fd, buffer,BUFFER_SIZE);
         if (line == countline)
         {
-            if (Ft_createlst(&lista,buffer,chread))
+            if (!Ft_createlst(&lista,buffer,chread))
                 return (NULL);    
             if (ft_findchr(buffer,chread))
                 break;
