@@ -28,12 +28,8 @@ char *ft_findchr(char *str, int size)
 int Ft_createlst(t_list **list, char *buffer, int chread)
 {
     t_list *nodo;
-    char *str;
 
-    str = ft_strdup(buffer,chread);
-    if (!str)
-        return (0);
-    nodo = lstnewnode(str);
+    nodo = lstnewnode(ft_strdup(buffer,chread));
     if (!nodo)
         return (0);
     lstaddback(list,nodo);

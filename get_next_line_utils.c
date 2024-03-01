@@ -3,6 +3,8 @@
 t_list *lstnewnode(void * content)
 {
     t_list *node;
+    if (!content)
+        return (NULL);
     node = malloc(sizeof(t_list));
     if (!node)
         return (NULL);
@@ -23,12 +25,12 @@ char *ft_strdup(char *str, int size)
     if (!p)
         return(NULL);
 	i = 0;
-    while (i < size)
+    while (i < size )
 	{
 		p[i] = str[i];
 		i++;
 	}
-	p[size] = '\0';
+	p[i] = '\0';
     return (p);
 }
 
@@ -69,15 +71,28 @@ void ft_strconcat(char *dst ,char *src)
 
     i = 0;
     lendst = ft_strlen(dst);
-    while (src[i])
+    while (src[i] != '\0' &&  src[i] != '\n')
     {
         dst[lendst + i] = src[i];
-        i++;
+        i++;git 
     }
     dst[lendst + i] = '\0';
 }
 
 void ft_delall(t_list **lista)
+{
+    t_list *list;
+    t_list *tmp;
+
+    list = *lista;
+    while(list != NULL)
+    {
+        tmp = list->next;
+        free(list->content);
+        free(list);
+        list = tmp;
+    }
+}
 
 char *ft_strjoin(t_list **lista)
 {
@@ -104,5 +119,6 @@ char *ft_strjoin(t_list **lista)
         ft_strconcat(strtmp ,(char *)tmp->content);
         tmp = tmp->next;
     }
+    ft_delall(lista);
     return (strtmp);
 }
