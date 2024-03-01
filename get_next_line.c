@@ -25,7 +25,7 @@ char *ft_findchr(char *str, int size)
     return (NULL);
 }
 
-int Ft_createlst(t_list **list, char *buffer, int chread)
+int ft_createlst(t_list **list, char *buffer, int chread)
 {
     t_list *nodo;
 
@@ -33,6 +33,8 @@ int Ft_createlst(t_list **list, char *buffer, int chread)
     if (!nodo)
         return (0);
     lstaddback(list,nodo);
+    if (ft_findchr(buffer,chread))
+        printf("OK\n");
     return (1);
 }
 
@@ -53,7 +55,7 @@ char	*get_next_line(int fd)
         chread = read(fd, buffer,BUFFER_SIZE);
         if (line == countline)
         {
-            if (!Ft_createlst(&lista,buffer,chread))
+            if (!ft_createlst(&lista,buffer,chread))
                 return (NULL);    
             if (ft_findchr(buffer,chread))
                 break;

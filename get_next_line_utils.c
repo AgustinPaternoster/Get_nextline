@@ -74,7 +74,7 @@ void ft_strconcat(char *dst ,char *src)
     while (src[i] != '\0' &&  src[i] != '\n')
     {
         dst[lendst + i] = src[i];
-        i++;git 
+        i++;
     }
     dst[lendst + i] = '\0';
 }
@@ -119,6 +119,5 @@ char *ft_strjoin(t_list **lista)
         ft_strconcat(strtmp ,(char *)tmp->content);
         tmp = tmp->next;
     }
-    ft_delall(lista);
-    return (strtmp);
+    return (ft_delall(lista),strtmp);
 }
