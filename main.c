@@ -10,5 +10,11 @@ int main(void)
     int fd = open("./test.txt",O_RDONLY);
     lista = get_next_line(fd);
     printf("%s",lista);
+    lista = get_next_line(fd);
+    printf("%s",lista);
+    lista = get_next_line(fd);
+    printf("%s",lista);
+    lista = get_next_line(fd);
+    printf("%s",lista);
     return (0);
 }
