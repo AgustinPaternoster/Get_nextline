@@ -1,11 +1,22 @@
 #include "get_next_line.h"
+void lstclean(t_list **list, char *line)
+{
+    char *rest;
+    size_t *toclean;
+    size_t *tmp;
+    int i;
+
+    
+
+}
 
 char *get_line(t_list **lista)
 {
-    char *line;
+    char *line;    
     int len;
     int i;
     t_list *tmp;
+    char *next_line;
 
     len = 0;
     tmp = *lista;
@@ -19,10 +30,11 @@ char *get_line(t_list **lista)
         }
         tmp = tmp->next;
     }
-    return (prepline(lista,len));
-    //xxxxx
-    //xxxxx
-    //xxxxx
+    line = malloc(sizeof(char) * len + 1);
+    if(!line)
+        return(NULL);
+    next_line = prepline(lista,line);
+    return (next_line);
     //xxxxx
     //xxxxx
     //xxxxx
@@ -48,7 +60,6 @@ char	*get_next_line(int fd)
     char *buffer;
     static t_list *lista;
     int chread;
-    t_list *node;
 
     buffer = NULL;
     lista = NULL;
@@ -68,6 +79,7 @@ char	*get_next_line(int fd)
     }
     //xxxxx
     //xxxxx
-    //xxxxx   
+    //xxxxx
+    //free(buffer);  
     return (get_line(&lista));
 }   

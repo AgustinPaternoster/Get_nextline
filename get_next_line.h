@@ -21,10 +21,10 @@ char *checkline(char *line);
 t_list *lstnewnode(char *str);
 void lstaddnode(t_list **lista, t_list *node);
 char	*get_next_line(int fd);
-char *prepline(t_list **lista , int len);
+char *prepline(t_list **lista , char *line);
 char *get_line(t_list **lista);
 int appendlist(t_list **lista, char *buffer);
-char *cleanline(t_list **lista , char *line);
+char *cleanline(char *line);
 
 
 #endif

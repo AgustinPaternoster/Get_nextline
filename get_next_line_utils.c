@@ -62,17 +62,13 @@ void lstaddnode(t_list **lista, t_list *node)
 //     return (i);
 // }
 
-char *prepline(t_list **lista , int len)
+char *prepline(t_list **lista , char *line)
 {
-     char *line;
      int i;
      int k;
      t_list *tmp;
 
     tmp = *lista;
-    line = malloc(sizeof(char) * len + 1);
-    if(!line)
-        return(NULL);
     k = 0;
     while (tmp !=NULL)
     {   
@@ -88,10 +84,10 @@ char *prepline(t_list **lista , int len)
     //aaaa
     //aaaa
     //aaaa
-    return (cleanline(lista,line));
+    return (cleanline(line));
 } 
 
-char *cleanline(t_list **lista , char *line)
+char *cleanline(char *line)
 {
     char *cleanline;
     int i;
