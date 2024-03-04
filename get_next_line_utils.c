@@ -49,66 +49,49 @@ void lstaddnode(t_list **lista, t_list *node)
 
 }
 
-// int lstsize(t_list *lista)
-// {
-//     t_list *tmp = lista;
-//     int i = 0;
-
-//     while(tmp != NULL)
-//     {
-//         i++;
-//         tmp = tmp->next;
-//     }
-//     return (i);
-// }
-
-char *prepline(t_list **lista , char *line)
+int lstsize(t_list *lista)
 {
-     int i;
-     int k;
-     t_list *tmp;
-
-    tmp = *lista;
-    k = 0;
-    while (tmp !=NULL)
-    {   
-        i = 0;
-        while(tmp->strbuff[i])
-        {
-            line[k] = tmp->strbuff[i];
-            i++;
-            k++;
-        }
+    t_list *tmp = lista;
+    
+    int i = 0;
+    while(tmp != NULL)
+    {
+        i++;
         tmp = tmp->next;
     }
-    //aaaa
-    //aaaa
-    //aaaa
-    return (cleanline(line));
-} 
-
-char *cleanline(char *line)
-{
-    char *cleanline;
-    int i;
-
-    i = 0;
-    while(line[i] && line[i] != '\n')
-        i++;    
-    cleanline = malloc(sizeof(char) * i + 2);
-    if (!cleanline)
-            return (NULL);
-    cleanline[i+1] = '\0';
-    cleanline[i] = '\n';
-    while(--i >= 0)
-        cleanline[i] = line[i];
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
-    return (cleanline);
+    return (i);
 }
+
+
+void lstclean(t_list **lista)
+{
+    t_list *tmp;
+    t_list *toclean;
+
+    toclean = *lista;
+    while (toclean != NULL)
+    {
+        tmp = toclean->next;
+        free(toclean->strbuff);
+        free(toclean);
+        toclean = tmp;
+    }
+    *lista = NULL;
+
+    //ddddd
+    //ddddd
+    //ddddd
+    //ddddd
+    //ddddd
+    //ddddd
+    //ddddd
+}
+
+// void addnextline(t_list **lista, char *line)
+// {
+    
+//     int i;
+//     t_list *node;
+
+
+// }

@@ -3,18 +3,6 @@
 
  
 
-int lstsize(t_list *lista)
-{
-    t_list *tmp = lista;
-    int i = 0;
-
-    while(tmp != NULL)
-    {
-        i++;
-        tmp = tmp->next;
-    }
-    return (i);
-}
 
 int main(void)
 {
