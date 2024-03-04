@@ -16,6 +16,8 @@
     
 }t_list;
 
+int checkline(char *line);
+
 
 #endif
 
