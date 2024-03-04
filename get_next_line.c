@@ -19,7 +19,7 @@ char *get_line(t_list **lista)
         }
         tmp = tmp->next;
     }
-    return (cleanline(lista,len));
+    return (prepline(lista,len));
     //xxxxx
     //xxxxx
     //xxxxx
@@ -52,7 +52,7 @@ char	*get_next_line(int fd)
 
     buffer = NULL;
     lista = NULL;
-    if (fd < 0 || BUFFER_SIZE == 0)
+    if (fd < 0 || BUFFER_SIZE == 0 || read(fd, buffer, 0) < 0)
         return (NULL); 
     while(!checkline(buffer))
     {
