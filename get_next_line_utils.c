@@ -87,11 +87,28 @@ void lstclean(t_list **lista)
     //ddddd
 }
 
-// void addnextline(t_list **lista, char *line)
-// {
-    
-//     int i;
-//     t_list *node;
+int addresttolst(t_list **lista, char *line)
+{
+    int i;
+    t_list *node;
+    char *rest;
 
-
-// }
+    if(!line) // revisar si la linea termina en \n
+        return (1);
+    while(line[i])
+        i++;
+    rest = malloc(sizeof(char) * i + 1);
+    if (!rest)
+        return (0);
+    rest[i] = '\n';
+    while(--i >= 0)
+        rest[i] = line[i];
+    node = lstnewnode(rest);
+    if(!node)
+    {
+        free(rest);
+        return (0);
+    }
+    lstaddnode(lista,node);
+    return (1);
+}

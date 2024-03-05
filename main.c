@@ -12,9 +12,9 @@ int main(void)
     printf("%s",lista);
     lista = get_next_line(fd);
     printf("%s",lista);
-    lista = get_next_line(fd);
-    printf("%s",lista);
-    lista = get_next_line(fd);
-    printf("%s",lista);
+    // lista = get_next_line(fd);
+    // printf("%s",lista);
+    // lista = get_next_line(fd);
+    // printf("%s",lista);
     return (0);
 }

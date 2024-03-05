@@ -24,8 +24,9 @@ char	*get_next_line(int fd);
 char *prepline(t_list **lista , char *line);
 char *get_line(t_list **lista);
 int appendlist(t_list **lista, char *buffer);
-char *cleanline(char *line);
+char *cleanline(t_list **lista ,char *line);
 void lstclean(t_list **lista);
+int addresttolst(t_list **lista, char *line);
 
 int lstsize(t_list *lista);
 

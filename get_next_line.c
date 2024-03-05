@@ -2,7 +2,7 @@
 
 
 
-char *cleanline(char *line)
+char *cleanline(t_list **lista ,char *line)
 {
     char *cleanline;
     int i;
@@ -17,10 +17,8 @@ char *cleanline(char *line)
     cleanline[i] = '\n';
     while(--i >= 0)
         cleanline[i] = line[i];
-    //aaaa
-    //aaaa
-    //aaaa
-    //aaaa
+    if (!addresttolst(lista,checkline(line) + 1))
+        return (NULL);
     //aaaa
     //aaaa
     //aaaa
@@ -47,9 +45,9 @@ char *prepline(t_list **lista , char *line)
         tmp = tmp->next;
     }
     lstclean(lista);
+
     //aaaa
-    //aaaa
-    return (cleanline(line));
+    return (cleanline(lista, line));
 } 
 
 char *get_line(t_list **lista)
@@ -76,8 +74,8 @@ char *get_line(t_list **lista)
     if(!line)
         return(NULL);
     next_line = prepline(lista,line);
+    free(line);
     return (next_line);
-    //xxxxx
     //xxxxx
 }
 
@@ -101,9 +99,8 @@ char	*get_next_line(int fd)
     char *buffer;
     static t_list *lista;
     int chread;
-
     buffer = NULL;
-    lista = NULL;
+    //lista = NULL;
     if (fd < 0 || BUFFER_SIZE == 0 || read(fd, buffer, 0) < 0)
         return (NULL); 
     while(!checkline(buffer))
