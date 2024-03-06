@@ -5,10 +5,23 @@ char * next_line(t_list **lista)
     char * nextline;
     int i;
     int k;
+    t_list *tmp;
 
     nextline = malloc(sizeof(char) * nextline_len(*lista));
     if(!nextline)
-        return(NULL);    
+        return(NULL);
+    k = 0;
+    tmp = *lista;
+    while(tmp != NULL)
+    {
+        i = 0;
+        while(tmp->strbuff[i] && tmp->strbuff[i] != '\n')
+            nextline[k++] = tmp->strbuff[i++];
+        if (tmp->strbuff[i] == '\n')
+            nextline[k++] = '\n';
+        tmp = tmp->next;
+    }
+    nextline[k] = '\0';
     return (nextline);
 }
 
