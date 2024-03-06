@@ -17,7 +17,7 @@
     
 }t_list;
 
-int checkline(char *line);
+int checkline(t_list *lista);
 t_list *lstnewnode(char *str);
 void lstaddnode(t_list **lista, t_list *node);
 char	*get_next_line(int fd);

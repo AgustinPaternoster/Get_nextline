@@ -1,17 +1,21 @@
 #include "get_next_line.h"
 
-int checkline(char *line)
+int checkline(t_list *lista)
 {
     int i;
+    t_list *tmp;
 
-    i = 0;
-    if (!line)
-        return (0);
-    while (line[i])
+    tmp = lista;
+    while (tmp != NULL)
     {
-        if (line[i] == '\n')
-            return(1);
+        i = 0;
+        while(tmp->strbuff[i])
+        {        
+            if (tmp->strbuff[i] == '\n')
+                return(1);
         i++;
+        }
+        tmp = tmp->next;
     }
     return(0);  
 }

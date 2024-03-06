@@ -38,7 +38,7 @@ int addtolist(t_list **list, int fd)
     int chread;
     char *buffer;
 
-    while(!checkline(buffer))
+    while(!checkline(*list))
     {
         buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
         if (!buffer)
