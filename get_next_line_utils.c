@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-int checkline(t_list *lista)
+t_list *checkline(t_list *lista)
 {
     int i;
     t_list *tmp;
@@ -12,12 +12,12 @@ int checkline(t_list *lista)
         while(tmp->strbuff[i])
         {        
             if (tmp->strbuff[i] == '\n')
-                return(1);
+                return(tmp);
         i++;
         }
         tmp = tmp->next;
     }
-    return(0);  
+    return(NULL);  
 }
 
 t_list *lstnewnode(char *str)
