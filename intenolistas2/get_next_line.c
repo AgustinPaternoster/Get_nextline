@@ -9,7 +9,8 @@ char *cleanline(t_list **lista ,char *line)
 
     i = 0;
     while(line[i] && line[i] != '\n')
-        i++;    
+        i++; 
+      
     cleanline = malloc(sizeof(char) * i + 2);
     if (!cleanline)
             return (NULL);
@@ -17,9 +18,12 @@ char *cleanline(t_list **lista ,char *line)
     cleanline[i] = '\n';
     while(--i >= 0)
         cleanline[i] = line[i];
-    if (!addresttolst(lista,checkline(line) + 1))
+    printf("l1:%d\n",lstsize(*lista));
+    lstclean(lista);
+    printf("L2:%d\n",lstsize(*lista));
+    if (!addresttolst(lista,checkline(line)))
         return (NULL);
-    //aaaa
+    printf("L3:%d\n",lstsize(*lista));
     //aaaa
     //aaaa
     //aaaa
@@ -36,6 +40,7 @@ char *prepline(t_list **lista , char *line)
     while (tmp !=NULL)
     {   
         i = 0;
+        //printf("1:%s\n",tmp->strbuff);
         while(tmp->strbuff[i])
         {
             line[k] = tmp->strbuff[i];
@@ -43,8 +48,9 @@ char *prepline(t_list **lista , char *line)
             k++;
         }
         tmp = tmp->next;
+        //printf("2:%s\n",line);
     }
-    lstclean(lista);
+    
 
     //aaaa
     return (cleanline(lista, line));
@@ -57,7 +63,6 @@ char *get_line(t_list **lista)
     int i;
     t_list *tmp;
     char *next_line;
-
     len = 0;
     tmp = *lista;
     while (tmp != NULL)
@@ -70,20 +75,19 @@ char *get_line(t_list **lista)
         }
         tmp = tmp->next;
     }
+
     line = malloc(sizeof(char) * len + 1);
     if(!line)
         return(NULL);
+    printf("len:%d\n",len);
     next_line = prepline(lista,line);
-    free(line);
-    return (next_line);
-    //xxxxx
+    return (free(line), next_line);
 }
 
 int appendlist(t_list **lista, char *buffer)
 {
     t_list *tmp;
     t_list *node;
-
     node = lstnewnode(buffer);
     if (!node)
     {
@@ -110,14 +114,15 @@ char	*get_next_line(int fd)
             return (NULL);
         chread = read(fd, buffer, BUFFER_SIZE);
         if (chread == 0)
+            {
+            free(buffer);
             break;
+            }
         buffer[chread] = '\0';
         if(!appendlist(&lista,buffer))
             return (NULL);
     }
     //xxxxx
-    //xxxxx
-    //xxxxx
-    //free(buffer);  
+    //xxxxx  
     return (get_line(&lista));
 }   

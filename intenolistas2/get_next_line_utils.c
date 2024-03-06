@@ -10,7 +10,7 @@ char *checkline(char *line)
     while (line[i])
     {
         if (line[i] == '\n')
-            return(&line[i]);
+            return(&line[i + 1]);
         i++;
     }
     return(NULL);  
@@ -93,6 +93,7 @@ int addresttolst(t_list **lista, char *line)
     t_list *node;
     char *rest;
 
+    i = 0;
     if(!line) // revisar si la linea termina en \n
         return (1);
     while(line[i])
@@ -100,7 +101,7 @@ int addresttolst(t_list **lista, char *line)
     rest = malloc(sizeof(char) * i + 1);
     if (!rest)
         return (0);
-    rest[i] = '\n';
+    rest[i] = '\0';
     while(--i >= 0)
         rest[i] = line[i];
     node = lstnewnode(rest);
