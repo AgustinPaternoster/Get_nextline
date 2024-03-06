@@ -86,7 +86,6 @@ char *get_line(t_list **lista)
 
 int appendlist(t_list **lista, char *buffer)
 {
-    t_list *tmp;
     t_list *node;
     node = lstnewnode(buffer);
     if (!node)
