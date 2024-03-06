@@ -1,4 +1,5 @@
 #include "get_next_line.h"
+
 char *lstnextnode(t_list *node)
 {
     char *rest;
@@ -9,17 +10,16 @@ char *lstnextnode(t_list *node)
     len = 0;
     while(node->strbuff[i] != '\n')
         i++;
-    printf("i:%d\n",i);
+    i++;
     while(node->strbuff[i + len])
         len++;
-    printf("i:%d\n",len);
     rest = malloc(sizeof(char) + len);
     if (!rest)
         return(NULL);
-    rest[--len] = '\0';
+    rest[len] = '\0';
     while (--len >= 0)
     {
-        rest[len] = node->strbuff[i + 1 + len];
+        rest[len] = node->strbuff[i + len];
     }
     return (rest);
 }
@@ -43,12 +43,7 @@ int dealloclst(t_list **lista)
     if (!node)
         return (0);
     lstaddnode(lista,node);
-
-    
-    
-
-    
-   return(1);
+    return(1);
 }
 
 
