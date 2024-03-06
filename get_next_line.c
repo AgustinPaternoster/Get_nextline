@@ -1,5 +1,11 @@
 #include "get_next_line.h"
 
+int dealloclst(char **lista)
+{
+    return(0);
+}
+
+
 char * next_line(t_list **lista)
 {
     char * nextline;

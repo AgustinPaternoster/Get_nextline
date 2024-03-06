@@ -73,7 +73,21 @@ int nextline_len(t_list *lista)
     return(len);
 }
 
+void lstclean(t_list **lista)
+{
+    t_list *tmp;
+    t_list *toclean;
 
+    toclean = *lista;
+    while (toclean != NULL)
+    {
+        tmp = toclean->next;
+        free(toclean->strbuff);
+        free(toclean);
+        toclean = tmp;
+    }
+    *lista = NULL;
+}
 /// @brief ///////////////////////////////////////////////////////////
 
 
