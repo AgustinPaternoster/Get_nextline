@@ -1,5 +1,18 @@
 #include "get_next_line.h"
 
+char * next_line(t_list **lista)
+{
+    char * nextline;
+    int i;
+    int k;
+
+    nextline = malloc(sizeof(char) * nextline_len(*lista));
+    if(!nextline)
+        return(NULL);    
+    return (nextline);
+}
+
+
 int addtolist(t_list **list, int fd)
 {
     t_list *node;
@@ -25,6 +38,7 @@ int addtolist(t_list **list, int fd)
     }
     //aaaaaa
     //aaaaaa
+    //aaaaaa
     return (1);
 }
 
@@ -39,7 +53,7 @@ char	*get_next_line(int fd)
         return (NULL); 
     if (!addtolist(&lista,fd))
         return (NULL);
-    printlst(lista);
-    
+    printf("%d\n",nextline_len(lista));
+    nextline = next_line(&lista);
     return (nextline);
 }   

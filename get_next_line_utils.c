@@ -45,9 +45,34 @@ void lstaddnode(t_list **lista, t_list *node)
         }
         tmp->next = node;
     }
-    
-
 }
+
+int nextline_len(t_list *lista)
+{
+    int i;
+    int len;
+    t_list *tmp;
+
+    len = 0;
+    tmp = lista;
+    while (tmp != NULL)
+    {
+        i = 0;
+        while(tmp->strbuff[i])
+        {
+            if(tmp->strbuff[i] == '\n')
+            {
+                len++;
+                return(len);
+            }
+            i++;
+            len++;
+        }
+        tmp = tmp->next;
+    }
+    return(len);
+}
+
 
 /// @brief ///////////////////////////////////////////////////////////
 

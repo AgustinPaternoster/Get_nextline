@@ -22,6 +22,8 @@ t_list *lstnewnode(char *str);
 void lstaddnode(t_list **lista, t_list *node);
 char	*get_next_line(int fd);
 int addtolist(t_list **list, int fd);
+int nextline_len(t_list *lista);
+char * next_line(t_list **lista);
 
 
 /// @brief /////////////////////////////////////////
