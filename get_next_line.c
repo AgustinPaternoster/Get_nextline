@@ -15,23 +15,19 @@ char	*lstnextnode(t_list *node)
 {
 	char	*rest;
 	int		i;
-	int		len;
+	int		k;
 
 	i = 0;
-	len = 0;
-	while (node->strbuff[i] != '\n')
-		i++;
-	i++;
-	while (node->strbuff[i + len])
-		len++;
-	rest = malloc(sizeof(char) + len);
+	k = 0;
+	rest = malloc(sizeof(char) + BUFFER_SIZE);
 	if (!rest)
 		return (NULL);
-	rest[len] = '\0';
-	while (--len >= 0)
-	{
-		rest[len] = node->strbuff[i + len];
-	}
+    while (node->strbuff[i] != '\n')
+        i++;
+    i++;
+    while(node->strbuff[i])
+        rest[k++] = node->strbuff[i++];
+	rest[k] = '\0';
 	return (rest);
 }
 

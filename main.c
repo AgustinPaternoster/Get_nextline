@@ -5,19 +5,16 @@
 int main(void)
 {
     char *lista = "XX";
-    int i = 0;
+    int i = 1;
 
     int fd = open("./test2.txt",O_RDONLY);
-    lista = get_next_line(fd);
-    printf("line:%s",lista);
-
-    // while (lista != NULL)
-    // {
-    //     lista = get_next_line(fd);
-    //     printf("line %d:%s",i,lista);
-    //     free(lista);
-    //     i++;
-    // }
+    while (lista != NULL)
+    {
+        lista = get_next_line(fd);
+        printf("-line %d:\n%s",i,lista);
+        free(lista);
+        i++;
+    }
 
     return (0);
 }
