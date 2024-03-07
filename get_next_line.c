@@ -39,6 +39,11 @@ int dealloclst(t_list **lista)
     rest = lstnextnode(node);
     //printf("rest:%ld",strlen(rest));
     lstclean(lista);
+    if (rest[0] == '\0')
+        {
+            free(rest);
+            return (1);
+        }
     node = lstnewnode(rest);
     if (!node)
         return (0);
