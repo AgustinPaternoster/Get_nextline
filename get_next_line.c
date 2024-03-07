@@ -67,7 +67,7 @@ char	*next_line(t_list **lista)
 	int		k;
 	t_list	*tmp;
 
-	nextline = malloc(sizeof(char) * nextline_len(*lista));
+	nextline = malloc(sizeof(char) * nextline_len(*lista) + 1);
 	if (!nextline)
 		return (NULL);
 	k = 0;
