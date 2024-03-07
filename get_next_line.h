@@ -40,4 +40,5 @@ char	*next_line(t_list **lista);
 int		dealloclst(t_list **lista);
 void	lstclean(t_list **lista);
 char	*lstnextnode(t_list *node);
+int		lstappend(t_list **lista, char *buff);
 #endif

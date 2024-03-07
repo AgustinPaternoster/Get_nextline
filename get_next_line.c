@@ -49,10 +49,8 @@ int	dealloclst(t_list **lista)
 		free(rest);
 		return (1);
 	}
-	node = lstnewnode(rest);
-	if (!node)
-		return (0);
-	lstaddnode(lista, node);
+    if (!lstappend(lista, rest))
+        return (0);
 	return (1);
 }
 
@@ -83,7 +81,6 @@ char	*next_line(t_list **lista)
 
 int	addtolist(t_list **list, int fd)
 {
-	t_list	*node;
 	int		chread;
 	char	*buffer;
 
@@ -99,10 +96,8 @@ int	addtolist(t_list **list, int fd)
 			return (1);
 		}
 		buffer[chread] = '\0';
-		node = lstnewnode(buffer);
-		if (!node)
-			return (0);
-		lstaddnode(list, node);
+        if (!lstappend(list,buffer))
+            return (0);
 	}
 	return (1);
 }

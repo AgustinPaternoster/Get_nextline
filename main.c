@@ -7,7 +7,7 @@ int main(void)
     char *lista = "XX";
     int i = 1;
 
-    int fd = open("./test2.txt",O_RDONLY);
+    int fd = open("./test.txt",O_RDONLY);
     while (lista != NULL)
     {
         lista = get_next_line(fd);

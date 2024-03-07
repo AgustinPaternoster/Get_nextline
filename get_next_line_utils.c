@@ -31,24 +31,18 @@ t_list	*checkline(t_list *lista)
 	return (NULL);
 }
 
-t_list	*lstnewnode(char *str)
+int	lstappend(t_list **lista, char *buff)
 {
 	t_list	*node;
-
-	if (!str)
-		return (NULL);
-	node = malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->strbuff = str;
-	node->next = NULL;
-	return (node);
-}
-
-void	lstaddnode(t_list **lista, t_list *node)
-{
 	t_list	*tmp;
 
+	if (!buff)
+		return (0);
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node->strbuff = buff;
+	node->next = NULL;
 	tmp = *lista;
 	if (tmp == NULL)
 		*lista = node;
@@ -60,6 +54,7 @@ void	lstaddnode(t_list **lista, t_list *node)
 		}
 		tmp->next = node;
 	}
+	return (1);
 }
 
 int	nextline_len(t_list *lista)
