@@ -4,17 +4,17 @@
 
 int main(void)
 {
-    char *lista;
+    char *lista = "XX";
+    int i = 0;
+
     int fd = open("./test.txt",O_RDONLY);
-    lista = get_next_line(fd);
-    printf("result:%s",lista);
-    lista = get_next_line(fd);
-    printf("result:%s",lista);
-    lista = get_next_line(fd);
-    printf("result:%s",lista);
-    lista = get_next_line(fd);
-    printf("result:%s",lista);
-    lista = get_next_line(fd);
-    printf("result:%s",lista);
+    while (lista != NULL)
+    {
+        lista = get_next_line(fd);
+        printf("line %d:%s",i,lista);
+        free(lista);
+        i++;
+    }
+
     return (0);
 }
