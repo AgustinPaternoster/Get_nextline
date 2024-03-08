@@ -1,15 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 12:39:12 by apaterno          #+#    #+#             */
-/*   Updated: 2024/03/07 12:39:20 by apaterno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 t_list	*checkline(t_list *lista)
 {
@@ -31,7 +21,7 @@ t_list	*checkline(t_list *lista)
 	return (NULL);
 }
 
-int	lstappend(t_list **lista, char *buff)
+int	lstappend(t_list **lista, char *buff, int fd)
 {
 	t_list	*node;
 	t_list	*tmp;
@@ -43,9 +33,9 @@ int	lstappend(t_list **lista, char *buff)
 		return (0);
 	node->strbuff = buff;
 	node->next = NULL;
-	tmp = *lista;
+	tmp = lista[fd];
 	if (tmp == NULL)
-		*lista = node;
+		lista[fd] = node;
 	else
 	{
 		while (tmp->next != NULL)

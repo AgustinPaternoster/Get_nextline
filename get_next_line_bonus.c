@@ -1,15 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: apaterno <apaterno@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 12:42:37 by apaterno          #+#    #+#             */
-/*   Updated: 2024/03/07 12:42:43 by apaterno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 char	*lstnextnode(t_list *node)
 {
@@ -82,7 +72,7 @@ int	addtolist(t_list **list, int fd)
 	int		chread;
 	char	*buffer;
 
-	while (!checkline(*list))
+	while (!checkline(list[fd]))
 	{
 		buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		if (!buffer)
@@ -92,7 +82,7 @@ int	addtolist(t_list **list, int fd)
 			return (free(buffer), 0);
 		if (chread == 0)
 			return (free(buffer), 1);
-		if (!lstappend(list[fd], buffer))
+		if (!lstappend(list, buffer, fd))
 			return (free(buffer), 0);
 	}
 	return (1);
