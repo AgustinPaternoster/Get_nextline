@@ -92,7 +92,7 @@ int	addtolist(t_list **list, int fd)
 			return (free(buffer), 0);
 		if (chread == 0)
 			return (free(buffer), 1);
-		if (!lstappend(list, buffer))
+		if (!lstappend(list[fd], buffer))
 			return (free(buffer), 0);
 	}
 	return (1);
@@ -104,13 +104,13 @@ char	*get_next_line(int fd)
 	char			*nextline;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
-		return (lstclean(&lista), NULL);
-	if (!addtolist(&lista, fd))
-		return (lstclean(&lista), NULL);
+		return (lstclean(lista[fd]), NULL);
+	if (!addtolist(lista, fd))
+		return (lstclean(lista[fd]), NULL);
 	if (!lista)
 		return (NULL);
-	nextline = next_line(&lista);
-	if (!dealloclst(&lista))
-		return (lstclean(&lista), NULL);
+	nextline = next_line(lista[fd]);
+	if (!dealloclst(lista[fd]))
+		return (lstclean(lista[fd]), NULL);
 	return (nextline);
 }
