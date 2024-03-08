@@ -99,21 +99,19 @@ void	lstclean(t_list **lista)
 	*lista = NULL;
 }
 
-char	*ft_calloc(size_t count, size_t size)
+char    *ft_calloc(size_t count, size_t size)
 {
-	char	*p;
-	size_t	d;
-	size_t	i;
+    char    *p;
+    size_t  i;
 
-	d = count * size;
-	p = malloc(d);
-	if (!p)
-		return (NULL);
-	i = 0;
-	while (i < d)
-	{
-		p[i] = '\0';
-		i++;
-	}
-	return (p);
+    p = malloc(size * count);
+    if (!p)
+        return (NULL);
+    i = 0;
+    while(i < count)
+    {
+        p[i] = '\0';
+        i++;
+    }
+    return (p);
 }

@@ -100,10 +100,10 @@ int	addtolist(t_list **list, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lista;
+	static t_list	*lista[OPEN_MAX];
 	char			*nextline;
 
-	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
 		return (lstclean(&lista), NULL);
 	if (!addtolist(&lista, fd))
 		return (lstclean(&lista), NULL);

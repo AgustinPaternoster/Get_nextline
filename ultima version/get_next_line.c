@@ -19,14 +19,15 @@ char	*lstnextnode(t_list *node)
 
 	i = 0;
 	k = 0;
-	rest = ft_calloc(BUFFER_SIZE, sizeof(char));
+	rest = ft_calloc(BUFFER_SIZE,sizeof(char));
 	if (!rest)
 		return (NULL);
-	while (node->strbuff[i] != '\n')
-		i++;
-	i++;
-	while (node->strbuff[i])
-		rest[k++] = node->strbuff[i++];
+    while (node->strbuff[i] != '\n')
+        i++;
+    i++;
+    while(node->strbuff[i])
+        rest[k++] = node->strbuff[i++];
+	//rest[k] = '\0';
 	return (rest);
 }
 
@@ -48,8 +49,8 @@ int	dealloclst(t_list **lista)
 		free(rest);
 		return (1);
 	}
-	if (!lstappend(lista, rest))
-		return (0);
+    if (!lstappend(lista, rest))
+        return (0);
 	return (1);
 }
 
@@ -74,6 +75,7 @@ char	*next_line(t_list **lista)
 			nextline[k++] = '\n';
 		tmp = tmp->next;
 	}
+	//nextline[k] = '\0';
 	return (nextline);
 }
 
@@ -88,12 +90,14 @@ int	addtolist(t_list **list, int fd)
 		if (!buffer)
 			return (0);
 		chread = read(fd, buffer, BUFFER_SIZE);
-		if (chread < 0)
-			return (free(buffer), 0);
 		if (chread == 0)
-			return (free(buffer), 1);
-		if (!lstappend(list, buffer))
-			return (free(buffer), 0);
+		{
+			free(buffer);
+			return (1);
+		}
+		//buffer[chread] = '\0';
+        if (!lstappend(list,buffer))
+            return (0);
 	}
 	return (1);
 }
@@ -104,13 +108,13 @@ char	*get_next_line(int fd)
 	char			*nextline;
 
 	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
-		return (lstclean(&lista), NULL);
+		return (NULL);
 	if (!addtolist(&lista, fd))
-		return (lstclean(&lista), NULL);
+		return (NULL);
 	if (!lista)
 		return (NULL);
 	nextline = next_line(&lista);
 	if (!dealloclst(&lista))
-		return (lstclean(&lista), NULL);
+		return (NULL);
 	return (nextline);
 }
