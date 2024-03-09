@@ -20,7 +20,7 @@ char	*lstnextnode(t_list *node)
 	return (rest);
 }
 
-int	dealloclst(t_list **lista)
+int	dealloclst(t_list **lista, int fd)
 {
 	char	*rest;
 	t_list	*node;
@@ -38,23 +38,23 @@ int	dealloclst(t_list **lista)
 		free(rest);
 		return (1);
 	}
-	if (!lstappend(lista, rest))
+	if (!lstappend(lista, rest, fd))
 		return (0);
 	return (1);
 }
 
-char	*next_line(t_list **lista)
+char	*next_line(t_list **lista, int fd)
 {
 	char	*nextline;
 	int		i;
 	int		k;
 	t_list	*tmp;
 
-	nextline = ft_calloc(nextline_len(*lista) + 1, sizeof(char));
+	nextline = ft_calloc(nextline_len(lista[fd]) + 1, sizeof(char));
 	if (!nextline)
 		return (NULL);
 	k = 0;
-	tmp = *lista;
+	tmp = lista[fd];
 	while (tmp != NULL)
 	{
 		i = 0;
@@ -90,17 +90,17 @@ int	addtolist(t_list **list, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lista[OPEN_MAX];
+	static t_list	*lista[4096];
 	char			*nextline;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
-		return (lstclean(lista[fd]), NULL);
+	if (fd < 0 || fd > 4096 || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
+		return (lstclean(lista), NULL);
 	if (!addtolist(lista, fd))
-		return (lstclean(lista[fd]), NULL);
+		return (lstclean(lista), NULL);
 	if (!lista)
 		return (NULL);
-	nextline = next_line(lista[fd]);
-	if (!dealloclst(lista[fd]))
-		return (lstclean(lista[fd]), NULL);
+	nextline = next_line(lista,fd);
+	if (!dealloclst(&lista[fd], fd))
+		return (lstclean(lista), NULL);
 	return (nextline);
 }

@@ -107,3 +107,16 @@ char	*ft_calloc(size_t count, size_t size)
 	}
 	return (p);
 }
+
+int lstsize(t_list *lista)
+{
+    t_list *tmp = lista;
+    int i = 0;
+
+    while(tmp != NULL)
+    {
+        i++;
+        tmp = tmp->next;
+    }
+    return (i);
+}
