@@ -4,7 +4,7 @@
 
 /////////////////////////
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 10
 #endif
 #include <stdio.h>
 ////////////////////////
@@ -27,7 +27,7 @@ int		addtolist(t_list **list, int fd);
 int		nextline_len(t_list *lista);
 char	*next_line(t_list **lista, int fd);
 int		dealloclst(t_list **lista, int fd);
-void	lstclean(t_list **lista);
+void	lstclean(t_list **lista, int fd);
 char	*lstnextnode(t_list *node);
 int		lstappend(t_list **lista, char *buff, int fd);
 char	*ft_calloc(size_t count, size_t size);

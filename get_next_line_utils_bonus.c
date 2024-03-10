@@ -73,12 +73,12 @@ int	nextline_len(t_list *lista)
 	return (len);
 }
 
-void	lstclean(t_list **lista)
+void	lstclean(t_list **lista, int fd)
 {
 	t_list	*tmp;
 	t_list	*toclean;
 
-	toclean = *lista;
+	toclean = lista[fd];
 	while (toclean != NULL)
 	{
 		tmp = toclean->next;
@@ -86,7 +86,7 @@ void	lstclean(t_list **lista)
 		free(toclean);
 		toclean = tmp;
 	}
-	*lista = NULL;
+	lista[fd] = NULL;
 }
 
 char	*ft_calloc(size_t count, size_t size)

@@ -25,14 +25,14 @@ int	dealloclst(t_list **lista, int fd)
 	char	*rest;
 	t_list	*node;
 
-	node = checkline(*lista);
+	node = checkline(lista[fd]);
 	if (node == NULL)
 	{
-		lstclean(lista);
+		lstclean(lista, fd);
 		return (1);
 	}
 	rest = lstnextnode(node);
-	lstclean(lista);
+	lstclean(lista, fd);
 	if (rest[0] == '\0')
 	{
 		free(rest);
@@ -94,13 +94,13 @@ char	*get_next_line(int fd)
 	char			*nextline;
 
 	if (fd < 0 || fd > 4096 || BUFFER_SIZE == 0 || read(fd, &nextline, 0) < 0)
-		return (lstclean(lista), NULL);
+		return (lstclean(lista, fd), NULL);
 	if (!addtolist(lista, fd))
-		return (lstclean(lista), NULL);
-	if (!lista)
+		return (lstclean(lista, fd), NULL);
+	if (lista[fd] == NULL)
 		return (NULL);
 	nextline = next_line(lista,fd);
-	if (!dealloclst(&lista[fd], fd))
-		return (lstclean(lista), NULL);
+	if (!dealloclst(lista, fd))
+		return (lstclean(lista, fd), NULL);
 	return (nextline);
 }

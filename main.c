@@ -6,22 +6,20 @@ int main(void)
 {
     char *lista = "XX";
     int i = 1;
-
+    char *lista2 = "XX";
     int fd = open("./test2.txt",O_RDONLY);
-    lista = get_next_line(fd);
-    printf("-line %d:\n%s",i,lista);
-    i++;
-    lista = get_next_line(fd);
-    printf("-line %d:\n%s",i,lista);
-
-
-    // while (lista != NULL)
-    // {
-    //     lista = get_next_line(fd);
-    //     printf("-line %d:\n%s",i,lista);
-    //     free(lista);
-    //     i++;
-    // }
+    int fd2 = open("./test.txt",O_RDONLY);
+ 
+    while (lista != NULL)
+    {
+        lista = get_next_line(fd);
+        printf("-line fd:%d %d:\n%s",fd,i,lista);
+        free(lista);
+        lista = get_next_line(fd2);
+        printf("-line fd:%d %d:\n%s",fd2,i,lista);
+        free(lista);
+        i++;
+    }
 
     return (0);
 }
