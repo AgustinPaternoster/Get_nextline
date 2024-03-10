@@ -1,18 +1,10 @@
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-/////////////////////////
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
-#include <stdio.h>
-////////////////////////
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
-
 
 typedef struct s_list
 {
@@ -32,7 +24,4 @@ char	*lstnextnode(t_list *node);
 int		lstappend(t_list **lista, char *buff, int fd);
 char	*ft_calloc(size_t count, size_t size);
 
-//////////////////////////
-int lstsize(t_list *lista);
-////////////////////////////
 #endif

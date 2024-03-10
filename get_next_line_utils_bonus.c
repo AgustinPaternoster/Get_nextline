@@ -1,4 +1,3 @@
-
 #include "get_next_line_bonus.h"
 
 t_list	*checkline(t_list *lista)
@@ -106,17 +105,4 @@ char	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (p);
-}
-
-int lstsize(t_list *lista)
-{
-    t_list *tmp = lista;
-    int i = 0;
-
-    while(tmp != NULL)
-    {
-        i++;
-        tmp = tmp->next;
-    }
-    return (i);
 }

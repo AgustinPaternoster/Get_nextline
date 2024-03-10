@@ -1,4 +1,3 @@
-
 #include "get_next_line_bonus.h"
 
 char	*lstnextnode(t_list *node)
@@ -99,7 +98,7 @@ char	*get_next_line(int fd)
 		return (lstclean(lista, fd), NULL);
 	if (lista[fd] == NULL)
 		return (NULL);
-	nextline = next_line(lista,fd);
+	nextline = next_line(lista, fd);
 	if (!dealloclst(lista, fd))
 		return (lstclean(lista, fd), NULL);
 	return (nextline);
